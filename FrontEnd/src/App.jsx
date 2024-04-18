@@ -1,5 +1,10 @@
+import RecipeSearch from "./Componants/RecipeDisplay";
 function App() {
-  return <div>App </div>;
+  return (
+    <div>
+      <RecipeSearch />
+    </div>
+  );
 }
 
 export default App;
