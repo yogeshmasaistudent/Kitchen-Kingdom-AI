@@ -6,7 +6,7 @@ function RecipeSearch() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch("http://localhost:3000/", {
+      const response = await fetch("https://kitchen-kingdom-ai.onrender.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,6 +114,7 @@ const styles = {
     borderRadius: "10px",
     padding: "20px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    border:"2px solid red"
   },
   heading: {
     color: "#333",
