@@ -17,7 +17,21 @@ function RecipeSearch() {
         },
         body: JSON.stringify({ dish: dishName }),
       });
+      const responses = await fetch("https://kitchen-kingdom-ai.onrender.com/dish", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ dish: dishName }),
+      });
       const data = await response.json();
+      const data1 = await responses.json();
+      localStorage.setItem("recipeDetails", JSON.stringify(data));
+      localStorage.setItem("recipeData", JSON.stringify(data1.imageUrl));
+      const storedRecipeData = localStorage.getItem("recipeData");
+      const parsedRecipeData = JSON.parse(storedRecipeData);
+    
+      console.log(parsedRecipeData);
       setRecipeData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
