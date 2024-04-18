@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const axios = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-
 
 const app = express();
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
@@ -47,6 +47,53 @@ Finally, list any extra add-ons for ${dish}.`;
     res.send({
       msg: "Here is the data",
       data,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      msg: "Error occurred",
+      err,
+    });
+  }
+});
+
+
+app.post("/dish", async (req, res) => {
+  try {
+    const { dish } = req.body;
+    const prompt = `generate an image of ${dish} dish `;
+
+    async function searchImage(query) {
+      try {
+        const response = await axios.get(
+          "https://www.googleapis.com/customsearch/v1",
+          {
+            params: {
+              key: process.env.API_KEY1,
+              cx: process.env.CUSTOM_SEARCH_ENGINE_ID,
+              q: query,
+              searchType: "image",
+            },
+          }
+        );
+
+        if (response.data.items && response.data.items.length > 0) {
+          const imageUrl = response.data.items[0].link;
+          return imageUrl;
+        } else {
+          return null;
+        }
+      } catch (error) {
+        console.error("Error fetching image:", error);
+        return null;
+      }
+    }
+
+    const imageUrl = await searchImage(dish);
+
+    res.send({
+      msg: "Here is the data",
+      imageUrl,
     });
   } catch (err) {
     console.log(err);

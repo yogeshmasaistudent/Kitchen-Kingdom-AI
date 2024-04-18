@@ -1,7 +1,8 @@
 import { Button } from "antd";
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-
+import { Center } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 function RecipeSearch() {
   const [dishName, setDishName] = useState("");
@@ -24,10 +25,9 @@ function RecipeSearch() {
   };
 
   return (
-    <>
+    <div style={styles.container}>
       <Navbar />
-
-      <div style={styles.container}>
+      <div>
         <h1 style={styles.title}>Cook What You Want With Kitchen-Kingdom-AI</h1>
         <div style={styles.formContainer}>
           <input
@@ -42,40 +42,44 @@ function RecipeSearch() {
           </button>
         </div>
         {recipeData && (
-          <div className="card-container" style={styles.cardContainer}>
-            <div className="card" style={styles.card}>
-              <h3 style={styles.cardTitle}>Ingredients:</h3>
-              <ul style={styles.list}>
-                {recipeData.data["Ingredients:"].map((ingredient, index) => (
-                  <li key={index}>{ingredient}</li>
-                ))}
-              </ul>
+          <div>
+            <div className="card-container" style={styles.cardContainer}>
+              <div className="card" style={styles.card}>
+                <h3 style={styles.cardTitle}>Ingredients:</h3>
+                <ul style={styles.list}>
+                  {recipeData.data["Ingredients:"].map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="card" style={styles.card}>
+                <h3 style={styles.cardTitle}>Instructions:</h3>
+                <ul style={styles.list}>
+                  {recipeData.data["Instructions:"].map(
+                    (instruction, index) => (
+                      <li key={index}>{instruction}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+              <div className="card" style={styles.card}>
+                <h3 style={styles.cardTitle}>Extra Add-Ons:</h3>
+                <ul style={styles.list}>
+                  {recipeData.data["Extra Add-Ons:"].map((addOn, index) => (
+                    <li key={index}>{addOn}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="card" style={styles.card}>
-              <h3 style={styles.cardTitle}>Instructions:</h3>
-              <ul style={styles.list}>
-                {recipeData.data["Instructions:"].map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="card" style={styles.card}>
-              <h3 style={styles.cardTitle}>Extra Add-Ons:</h3>
-              <ul style={styles.list}>
-                {recipeData.data["Extra Add-Ons:"].map((addOn, index) => (
-                  <li key={index}>{addOn}</li>
-                ))}
-              </ul>
-            </div>
+
+            <Center h="10vh">
+              <Button colorScheme="teal">Centered Button</Button>
+            </Center>
           </div>
         )}
-        <Button>Save</Button>
       </div>
-
-      <div className="cooking">
-        
-      </div>
-    </>
+      {/* <Button>Save</Button> */}
+    </div>
   );
 }
 
@@ -84,10 +88,12 @@ const styles = {
     maxWidth: "1500px",
     marginBottom: "10px",
     margin: "0 auto",
-    padding: "40px",
+    padding: "0px",
     borderRadius: "10px",
     background: "#FFFFFF",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+    // height: "1000px",
+    // border: "1px solid green",
   },
   title: {
     textAlign: "center",
@@ -103,7 +109,7 @@ const styles = {
     marginBottom: "30px",
   },
   input: {
-    width: "calc(100% - 100px)",
+    width: "calc(90% - 100px)",
     padding: "12px",
     marginRight: "10px",
     borderRadius: "5px",
@@ -122,6 +128,7 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     gap: "20px",
+    border: "1px solid black",
   },
   card: {
     background: "#fff",
