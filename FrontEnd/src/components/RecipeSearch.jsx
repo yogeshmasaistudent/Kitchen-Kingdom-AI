@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import React, { useState } from "react";
 
 function RecipeSearch() {
@@ -22,7 +23,8 @@ function RecipeSearch() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Find Your Recipe</h1>
+      <Button>Back</Button>
+      <h1 style={styles.title}>Cook What You Want With Kitchen-Kingdom-AI</h1>
       <div style={styles.formContainer}>
         <input
           type="text"
@@ -36,27 +38,26 @@ function RecipeSearch() {
         </button>
       </div>
       {recipeData && (
-        <div style={styles.recipeDetails}>
-          <h2 style={styles.heading}>{recipeData.msg}</h2>
-          <div>
-            <h3 style={{ color: "red" }}>Ingredients:</h3>
-            <ul>
+        <div className="card-container" style={styles.cardContainer}>
+          <div className="card" style={styles.card}>
+            <h3 style={styles.cardTitle}>Ingredients:</h3>
+            <ul style={styles.list}>
               {recipeData.data["Ingredients:"].map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
             </ul>
           </div>
-          <div>
-            <h3 style={{ color: "red" }}>Instructions:</h3>
-            <ol>
+          <div className="card" style={styles.card}>
+            <h3 style={styles.cardTitle}>Instructions:</h3>
+            <ul style={styles.list}>
               {recipeData.data["Instructions:"].map((instruction, index) => (
                 <li key={index}>{instruction}</li>
               ))}
-            </ol>
+            </ul>
           </div>
-          <div>
-            <h3 style={{ color: "red" }}>Extra Add-Ons:</h3>
-            <ul>
+          <div className="card" style={styles.card}>
+            <h3 style={styles.cardTitle}>Extra Add-Ons:</h3>
+            <ul style={styles.list}>
               {recipeData.data["Extra Add-Ons:"].map((addOn, index) => (
                 <li key={index}>{addOn}</li>
               ))}
@@ -70,18 +71,19 @@ function RecipeSearch() {
 
 const styles = {
   container: {
-    maxWidth: "1200px",
+    maxWidth: "1400px",
     margin: "0 auto",
     padding: "40px",
     borderRadius: "10px",
-    background: "linear-gradient(to bottom, #ffecd2, #fcb69f)",
+    background: "#FFFFFF",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+    height:"1000px"
   },
   title: {
     textAlign: "center",
     fontSize: "36px",
     marginBottom: "30px",
-    color: "#333",
+    color: "green",
     textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
   },
   formContainer: {
@@ -106,19 +108,23 @@ const styles = {
     cursor: "pointer",
     transition: "background-color 0.3s ease",
   },
-  buttonHover: {
-    backgroundColor: "#0056b3",
+  cardContainer: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "20px",
   },
-  recipeDetails: {
+  card: {
     background: "#fff",
     borderRadius: "10px",
     padding: "20px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    border:"2px solid red"
   },
-  heading: {
-    color: "#333",
+  cardTitle: {
+    color: "red",
     marginBottom: "15px",
+  },
+  list: {
+    paddingInlineStart: "20px",
   },
 };
 
