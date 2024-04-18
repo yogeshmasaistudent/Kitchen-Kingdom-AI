@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { Input, Form, Button, Tag, message } from "antd";
 import createRecipeImg from "../../public/assets/createRecipe.png";
 import "../styles/createRecipe.css";
 import UploadWidget from "../components/UploadWidget.jsx";
 
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 import Spinner from "../components/Spinner.jsx";
 import API_BASE_URL from "../constant.js";
+import RecipeSearch from "../components/RecipeSearch.jsx";
 
 const CreateRecipe = () => {
-  const {currentUser} = useSelector(state => state.user)
-  const userId = currentUser.data.data.user._id
+  const { currentUser } = useSelector((state) => state.user);
+  const userId = currentUser.data.data.user._id;
 
   const navigate = useNavigate();
 
   const [cookies, _] = useCookies(["access_token"]);
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const [recipe, setRecipe] = useState({
     name: "",
@@ -54,7 +55,7 @@ const CreateRecipe = () => {
 
   const handleSubmit = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const requiredFields = ["name", "instructions", "recipeImg"];
       if (requiredFields.some((field) => !recipe[field])) {
         console.error("Required fields are missing");
@@ -69,7 +70,7 @@ const CreateRecipe = () => {
         }
       );
       console.log("Response:", resp);
-      setIsLoading(false)
+      setIsLoading(false);
       message.success("Recipe Created");
       navigate("/");
     } catch (error) {
@@ -82,13 +83,16 @@ const CreateRecipe = () => {
     handleChange("recipeImg", imageUrl);
   };
 
+  const handclick = () => {
+    navigate("/.get-help");
+  };
+
   return (
     <>
       <Navbar />
       <div className="createRecipeContainer container">
         <p className="sectionHeading">Create Recipe</p>
         <div className="createRecipe">
-          <img src={createRecipeImg} alt="" />
           <Form onFinish={handleSubmit} className="createRecipeForm">
             <Form.Item
               name="name"
@@ -180,16 +184,34 @@ const CreateRecipe = () => {
 
             <Form.Item>
               {isLoading ? (
-                  <Button type="primary" htmlType="submit">
-                    <Spinner />
-                  </Button>
+                <Button type="primary" htmlType="submit">
+                  <Spinner />
+                </Button>
               ) : (
-                  <Button type="primary" htmlType="submit">
-                    Create Recipe
-                  </Button>
+                <Button type="primary" htmlType="submit">
+                  Create Recipe
+                </Button>
               )}
             </Form.Item>
           </Form>
+
+          <div style={{ margin: "auto" }}>
+            <button
+              style={{
+                margin: "auto",
+                padding: "10px",
+                backgroundColor: "gold",
+                color: "black",
+                border: "none",
+                borderRadius: "4px",
+              }}
+              type="primary"
+              onClick={handclick}
+            >
+              Create Receipe with AI
+            </button>
+            <img src={createRecipeImg} alt="" />
+          </div>
         </div>
       </div>
     </>

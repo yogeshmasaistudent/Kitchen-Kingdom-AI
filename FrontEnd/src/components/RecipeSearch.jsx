@@ -26,48 +26,49 @@ function RecipeSearch() {
   return (
     <div style={styles.container}>
       <Navbar />
-      <Button>Back</Button>
-      <h1 style={styles.title}>Cook What You Want With Kitchen-Kingdom-AI</h1>
-      <div style={styles.formContainer}>
-        <input
-          type="text"
-          placeholder="Enter dish name"
-          value={dishName}
-          onChange={(e) => setDishName(e.target.value)}
-          style={styles.input}
-        />
-        <button onClick={handleSearch} style={styles.button}>
-          Search
-        </button>
-      </div>
-      {recipeData && (
-        <div className="card-container" style={styles.cardContainer}>
-          <div className="card" style={styles.card}>
-            <h3 style={styles.cardTitle}>Ingredients:</h3>
-            <ul style={styles.list}>
-              {recipeData.data["Ingredients:"].map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="card" style={styles.card}>
-            <h3 style={styles.cardTitle}>Instructions:</h3>
-            <ul style={styles.list}>
-              {recipeData.data["Instructions:"].map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="card" style={styles.card}>
-            <h3 style={styles.cardTitle}>Extra Add-Ons:</h3>
-            <ul style={styles.list}>
-              {recipeData.data["Extra Add-Ons:"].map((addOn, index) => (
-                <li key={index}>{addOn}</li>
-              ))}
-            </ul>
-          </div>
+      <div>
+        <h1 style={styles.title}>Cook What You Want With Kitchen-Kingdom-AI</h1>
+        <div style={styles.formContainer}>
+          <input
+            type="text"
+            placeholder="Enter dish name"
+            value={dishName}
+            onChange={(e) => setDishName(e.target.value)}
+            style={styles.input}
+          />
+          <button onClick={handleSearch} style={styles.button}>
+            Search
+          </button>
         </div>
-      )}
+        {recipeData && (
+          <div className="card-container" style={styles.cardContainer}>
+            <div className="card" style={styles.card}>
+              <h3 style={styles.cardTitle}>Ingredients:</h3>
+              <ul style={styles.list}>
+                {recipeData.data["Ingredients:"].map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="card" style={styles.card}>
+              <h3 style={styles.cardTitle}>Instructions:</h3>
+              <ul style={styles.list}>
+                {recipeData.data["Instructions:"].map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="card" style={styles.card}>
+              <h3 style={styles.cardTitle}>Extra Add-Ons:</h3>
+              <ul style={styles.list}>
+                {recipeData.data["Extra Add-Ons:"].map((addOn, index) => (
+                  <li key={index}>{addOn}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
