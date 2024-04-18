@@ -22,42 +22,44 @@ Kitchen-Kingdom-AI/
 │  ├─ node_modules/
 │  ├─ index.js
 │  ├─ package.json
-│  ├─ packagelock.json
-├─ Frontend/
-│  ├─ dist/
-│  ├─ node_modules/
-│  ├─ public/
-│  ├─ src/
-│  │  ├─ components/
-│  │  │  ├─ navbar.jsx
-│  │  │  ├─ privateroute.jsx
-│  │  │  ├─ recipedetailsmodal.jsx
-│  │  │  ├─ recipeeditmodal.jsx
-│  │  │  ├─ recipesearch.jsx
-│  │  │  ├─ spinner.jsx
-│  │  │  ├─ uploadwidget.jsx
-│  │  ├─ pages/
-│  │  │  ├─ auth/
-│  │  │  │  ├─ forms/
-│  │  │  │  │  ├─ authlayout.jsx
-│  │  │  ├─ user/
-│  │  │  │  ├─ userslice.js
-│  │  ├─ redux/
-│  │  │  ├─ store.js
-│  ├─ styles/
-│  │  ├─ auth/
-│  │  │  ├─ authlayout.css
-│  │  ├─ create-recipe.css
-│  │  ├─ home.css
-│  │  ├─ navbar.css
-│  │  ├─ register.css
-│  ├─ .eslintrc.cjs
-│  ├─ .gitignore
-│  ├─ index.html
-│  ├─ package.json
-│  ├─ packagelock.json
-│  ├─ README.md
-│  ├─ vite.config.js
+│  └─ packagelock.json
+└─ Frontend/
+   ├─ dist/
+   ├─ node_modules/
+   ├─ public/
+   ├─ src/
+   │  ├─ components/
+   │  │  ├─ navbar.jsx
+   │  │  ├─ privateroute.jsx
+   │  │  ├─ recipedetailsmodal.jsx
+   │  │  ├─ recipeeditmodal.jsx
+   │  │  ├─ recipesearch.jsx
+   │  │  ├─ spinner.jsx
+   │  │  └─ uploadwidget.jsx
+   │  ├─ pages/
+   │  │  ├─ auth/
+   │  │  │  ├─ forms/
+   │  │  │  │  └─ authlayout.jsx
+   │  │  └─ user/
+   │  │     └─ userslice.js
+   │  ├─ redux/
+   │  │  └─ store.js
+   │  ├─ styles/
+   │  │  ├─ auth/
+   │  │  │  └─ authlayout.css
+   │  │  ├─ create-recipe.css
+   │  │  ├─ home.css
+   │  │  ├─ navbar.css
+   │  │  └─ register.css
+   │  ├─ .eslintrc.cjs
+   │  ├─ .gitignore
+   │  ├─ index.html
+   │  ├─ package.json
+   │  ├─ packagelock.json
+   │  ├─ README.md
+   │  └─ vite.config.js
+   └─ .gitignore
+
 
 
 ## Video Walkthrough of the project
