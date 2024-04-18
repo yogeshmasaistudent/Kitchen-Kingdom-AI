@@ -15,7 +15,7 @@ Fullstack
 - Backend: [Link to Backend Deployment]
 
 ## Directory Structure
-
+```bash
 Kitchen-Kingdom-AI/
 ├─ Backend/
 │ ├─ .env
@@ -59,7 +59,7 @@ Kitchen-Kingdom-AI/
 │ ├─ README.md
 │ └─ vite.config.js
 └─ .gitignore
-
+```
 
 
 ## Video Walkthrough of the project
