@@ -1,5 +1,7 @@
 import { Button } from "antd";
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function RecipeSearch() {
   const [dishName, setDishName] = useState("");
@@ -23,6 +25,7 @@ function RecipeSearch() {
 
   return (
     <div style={styles.container}>
+      <Navbar />
       <Button>Back</Button>
       <h1 style={styles.title}>Cook What You Want With Kitchen-Kingdom-AI</h1>
       <div style={styles.formContainer}>
@@ -77,7 +80,7 @@ const styles = {
     borderRadius: "10px",
     background: "#FFFFFF",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-    height:"1000px"
+    height: "1000px",
   },
   title: {
     textAlign: "center",
