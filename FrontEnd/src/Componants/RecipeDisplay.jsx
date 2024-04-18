@@ -3,73 +3,6 @@ import React, { useState } from "react";
 function RecipeSearch() {
   const [dishName, setDishName] = useState("");
   const [recipeData, setRecipeData] = useState(null);
-  const [recipeText,SetRecipeText] = useState("");
-function parseRecipe(recipeText) {
-  let recipe = {
-    ingredients: [],
-    instructions: [],
-    extraAddOns: [],
-  };
-
-  // Function to extract sections based on pattern and start delimiter
-  function extractSection(text, pattern, startDelimiter) {
-    let sections = [];
-    let regex = new RegExp(pattern, "g");
-    let match;
-    let lastIndex = 0;
-
-    while ((match = regex.exec(text)) !== null) {
-      let sectionName = match[1];
-      let sectionStartIndex = match.index + match[0].length;
-      let sectionEndIndex = text.indexOf(startDelimiter, sectionStartIndex);
-
-      if (sectionEndIndex === -1) {
-        sectionEndIndex = text.length;
-      }
-
-      let sectionContent = text
-        .substring(sectionStartIndex, sectionEndIndex)
-        .trim();
-      sections.push({ name: sectionName, content: sectionContent });
-
-      lastIndex = sectionEndIndex;
-    }
-
-    return sections;
-  }
-
-  // Extract ingredients
-  let ingredientSections = extractSection(recipeText, "\\* (.+?):", "\\*");
-  recipe.ingredients = ingredientSections.map((section) =>
-    section.content.replace(/\*/g, "").replace(/\n/g, "").trim()
-  );
-
-  // Extract instructions
-  let instructionSections = extractSection(
-    recipeText,
-    "To make the (.+?):",
-    "To make the"
-  );
-  recipe.instructions = instructionSections.map((section) =>
-    section.content.replace(/\*/g, "").replace(/\n/g, "").trim()
-  );
-
-  // Extract extra add-ons
-  let extraAddOnSections = extractSection(recipeText, "\\* (.+?):", "\\*");
-  recipe.extraAddOns = extraAddOnSections.map((section) =>
-    section.content.replace(/\*/g, "").replace(/\n/g, "").trim()
-  );
-
-  return recipe;
-}
-
-// Example usage
-
-console.log(parseRecipe(recipeText));
-
-
-
-
 
   const handleSearch = async () => {
     try {
@@ -81,10 +14,7 @@ console.log(parseRecipe(recipeText));
         body: JSON.stringify({ dish: dishName }),
       });
       const data = await response.json();
-      setRecipeData(SetRecipeText(data.recipeText));
-      console.log(recipeData);
-      console.log(data)
-     
+      setRecipeData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -107,19 +37,31 @@ console.log(parseRecipe(recipeText));
       </div>
       {recipeData && (
         <div style={styles.recipeDetails}>
-          <h2 style={styles.heading}>{recipeData.message}</h2>
-          <p>
-            <strong>Dish:</strong> {recipeData.dish}
-          </p>
-          <p>
-            <strong>Recipe:</strong>
-          </p>
-          <pre style={styles.recipeText}>
-            {recipeData.recipeText.split(/\n(?=\{2,} [A-Za-z ]+:)/)}
-            {console.log(
-              recipeData.recipeText.split(/\n(?=\{2,} [A-Za-z ]+:)/)
-            )}
-          </pre>
+          <h2 style={styles.heading}>{recipeData.msg}</h2>
+          <div>
+            <h3 style={{ color: "red" }}>Ingredients:</h3>
+            <ul>
+              {recipeData.data["Ingredients:"].map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 style={{ color: "red" }}>Instructions:</h3>
+            <ol>
+              {recipeData.data["Instructions:"].map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <h3 style={{ color: "red" }}>Extra Add-Ons:</h3>
+            <ul>
+              {recipeData.data["Extra Add-Ons:"].map((addOn, index) => (
+                <li key={index}>{addOn}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
@@ -128,7 +70,7 @@ console.log(parseRecipe(recipeText));
 
 const styles = {
   container: {
-    maxWidth: "800px",
+    maxWidth: "1200px",
     margin: "0 auto",
     padding: "40px",
     borderRadius: "10px",
@@ -176,9 +118,6 @@ const styles = {
   heading: {
     color: "#333",
     marginBottom: "15px",
-  },
-  recipeText: {
-    whiteSpace: "pre-wrap",
   },
 };
 
