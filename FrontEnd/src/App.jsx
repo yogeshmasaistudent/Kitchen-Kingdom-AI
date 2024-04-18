@@ -1,6 +1,9 @@
+import RecipeSearch from "./Componants/RecipeDisplay"
 function App() {
   return (
-    <div>App</div>
+    <div>
+     <RecipeSearch/>
+    </div>
   )
 }
 
