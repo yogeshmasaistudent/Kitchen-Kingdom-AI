@@ -1,38 +1,62 @@
 require("dotenv").config();
-const express = require('express');
-const cors = require("cors")
-const {GoogleGenerativeAI} = require("@google/generative-ai");
+const express = require("express");
+const cors = require("cors");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-const model = genAI.getGenerativeModel({model:"gemini-pro"})
-app.use(cors(),express.json());
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+app.use(cors(), express.json());
 
+app.post("/", async (req, res) => {
+  try {
+    const { dish } = req.body;
+    const prompt = `write the recipe for ${dish}.
+**Ingredients:**
+Provide the ingredients for ${dish}.
 
+**Instructions:**
+Then, provide the instructions to cook ${dish}.
 
-app.post("/",async(req,res)=>{
-  try{
-    const{dish}=req.body;
-    const prompt = `write the receipe for ${dish} . firstly give me all the ingredients required for dish then give me the intructions to cook that dish then give me the extra add on thing to add into the dish`
-    const result =await model.generateContent(prompt);
-    const response  = await result.response;
+**Extra Add-Ons:**
+Finally, list any extra add-ons for ${dish}.`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
     const text = response.text();
-    console.log(text);
+    const lines = text.split("\n");
+
+    console.log("Generated Text:", text);
+
+    let data = {};
+    let currentSection = "";
+
+    lines.forEach((line) => {
+      if (line.startsWith("**")) {
+        currentSection = line.substring(2, line.length - 2).trim();
+        data[currentSection] = [];
+      } else if (line.startsWith("*")) {
+        data[currentSection].push(line.substring(2).trim());
+      } else if (currentSection === "Instructions:") {
+        data[currentSection].push(line.trim());
+      }
+    });
+
+    console.log("Data:", data);
     res.send({
-      msg:"hhere is the data ",
-      text
-    })
-  }
-  catch(err){
+      msg: "Here is the data",
+      data,
+    });
+  } catch (err) {
     console.log(err);
     res.status(500).send({
-      msg:"error occured",
-      err
-    })
+      msg: "Error occurred",
+      err,
+    });
   }
-})
+});
 
-
-app.listen(3000,()=>{
-  console.log("server running");
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
