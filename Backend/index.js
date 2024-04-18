@@ -8,7 +8,13 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({model:"gemini-pro"})
 app.use(cors(),express.json());
 
-
+app.get('/',(req, res)=>{
+  try{
+    res.status(200).send({msg: "Home page"})
+  }catch(err){
+    re.status(400).send({msg: err})
+  }
+})
 
 app.post("/",async(req,res)=>{
   try{
