@@ -2,11 +2,12 @@ import { Button } from "antd";
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { Center } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
 function RecipeSearch() {
   const [dishName, setDishName] = useState("");
   const [recipeData, setRecipeData] = useState(null);
+  const [recipeImage, setRecipeImage] = useState("");
 
   const handleSearch = async () => {
     try {
@@ -17,7 +18,7 @@ function RecipeSearch() {
         },
         body: JSON.stringify({ dish: dishName }),
       });
-      const responses = await fetch("https://kitchen-kingdom-ai.onrender.com/dish", {
+      const responses1 = await fetch("https://kitchen-kingdom-ai.onrender.com/dish", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,18 +26,26 @@ function RecipeSearch() {
         body: JSON.stringify({ dish: dishName }),
       });
       const data = await response.json();
-      const data1 = await responses.json();
-      localStorage.setItem("recipeDetails", JSON.stringify(data));
-      localStorage.setItem("recipeData", JSON.stringify(data1.imageUrl));
-      const storedRecipeData = localStorage.getItem("recipeData");
-      const parsedRecipeData = JSON.parse(storedRecipeData);
-    
-      console.log(parsedRecipeData);
-      setRecipeData(data);
+      const data1 = await responses1.json();
+      
+      // Check if the necessary data exists
+      if (data && data1 && data.data && data1.imageUrl) {
+        localStorage.setItem("recipeDetails", JSON.stringify(data));
+        localStorage.setItem("recipeData", JSON.stringify(data1.imageUrl));
+        const storedRecipeData = localStorage.getItem("recipeData");
+        const parsedRecipeData = JSON.parse(storedRecipeData);
+  
+        console.log(parsedRecipeData);
+        setRecipeImage(data1.imageUrl);
+        setRecipeData(data);
+      } else {
+        console.error("Error: Invalid data format");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  
 
   return (
     <div style={styles.container}>
@@ -84,10 +93,10 @@ function RecipeSearch() {
                   ))}
                 </ul>
               </div>
-            </div>
-
+            </div> 
+              {/* Displaying Image */}
+            <img src={recipeImage} alt="Recipe" style={styles.recipeImage} />
             <Center h="10vh">
-              <Button colorScheme="teal">Centered Button</Button>
             </Center>
           </div>
         )}
@@ -121,6 +130,13 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     marginBottom: "30px",
+  },
+  recipeImage: {
+    width: "100%", // Set the width of the image to 100% of the container
+    height: "auto", // Maintain aspect ratio
+    marginTop: "20px",
+    borderRadius: "10px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
   input: {
     width: "calc(90% - 100px)",
