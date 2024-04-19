@@ -11,8 +11,8 @@ Kitchen-Kingdom-AI is an innovative application that leverages artificial intell
 Fullstack
 
 ## Deployed App
-- Frontend: [Link to Frontend Deployment]
-- Backend: [Link to Backend Deployment]
+- Frontend: http://localhost:5173/
+- Backend: https://kitchen-kingdom-ai-q6fy.onrender.com
 
 ## Directory Structure
 ```bash
