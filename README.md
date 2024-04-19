@@ -18,55 +18,56 @@ Fullstack
 ```bash
 Kitchen-Kingdom-AI/
 ├─ Backend/
-│ ├─ .env
-│ ├─ node_modules/
-│ ├─ index.js
-│ ├─ package.json
-│ └─ packagelock.json
-└ Frontend/
-| ├─ dist/
-| ├─ node_modules/
-| ├─ public/
-| ├─ src/
-│ | ├─ components/
-│ │ | ├─ navbar.jsx
-│ │ | ├─ privateroute.jsx
-│ │ | ├─ recipedetailsmodal.jsx
-│ │ | ├─ recipeeditmodal.jsx
-│ │ | ├─ recipesearch.jsx
-│ │ | ├─ spinner.jsx
-│ │ | └─ uploadwidget.jsx
-│ | ├─ pages/
-│ │ | ├─ auth/
-│ │ │ ├─ forms/
-| | | | |-loginFrom.jsx
-| | | | └─ registerform.jsx
-│ │ │ └─ authlayout.jsx
-│ │ | └─ createrecipe.jsx
-│ │ | └─ myrecipe.jsx
-| | | └─ savedrecipes.jsx
-│ | ├─ redux/
-| | | ├─ user
-│ │ | └─ store.js
-│ | ├─ styles/
-│ │ | ├─ authlayout.css
-│ │ | ├─ create-recipe.css
-│ │ | ├─ home.css
-│ │ | ├─ navbar.css
-│ │ | └─ register.css
-| | ├─ App.css
-| | ├─ App.jsx
-| | ├─ constant.js
-| | ├─ index.css
-| | └─ main.js
-│ ├─ .eslintrc.cjs
-│ ├─ .gitignore
-│ ├─ index.html
-│ ├─ package.json
-│ ├─ packagelock.json
-│ └─ vite.config.js
-└─ .gitignore
-└─ redme.md
+│   ├─ .env
+│   ├─ node_modules/
+│   ├─ server.js
+│   ├─ package.json
+│   └─ package-lock.json
+├─ Frontend/
+│   ├─ dist/
+│   ├─ node_modules/
+│   ├─ public/
+│   ├─ src/
+│   │   ├─ components/
+│   │   │   ├─ navbar.jsx
+│   │   │   ├─ privateroute.jsx
+│   │   │   ├─ recipedetailsmodal.jsx
+│   │   │   ├─ recipeeditmodal.jsx
+│   │   │   ├─ recipesearch.jsx
+│   │   │   ├─ spinner.jsx
+│   │   │   └─ uploadwidget.jsx
+│   │   ├─ pages/
+│   │   │   ├─ auth/
+│   │   │   │   ├─ forms/
+│   │   │   │   │   ├─ loginForm.jsx
+│   │   │   │   │   └─ registerForm.jsx
+│   │   │   │   └─ authLayout.jsx
+│   │   │   ├─ createRecipe.jsx
+│   │   │   ├─ myRecipes.jsx
+│   │   │   └─ savedRecipes.jsx
+│   │   ├─ redux/
+│   │   │   ├─ user/
+│   │   │   └─ store.js
+│   │   ├─ styles/
+│   │   │   ├─ authLayout.css
+│   │   │   ├─ create-recipe.css
+│   │   │   ├─ home.css
+│   │   │   ├─ navbar.css
+│   │   │   └─ register.css
+│   │   ├─ App.css
+│   │   ├─ App.jsx
+│   │   ├─ constants.js
+│   │   ├─ index.css
+│   │   └─ main.js
+│   ├─ .eslintrc.cjs
+│   ├─ .gitignore
+│   ├─ index.html
+│   ├─ package.json
+│   ├─ package-lock.json
+│   └─ vite.config.js
+├─ .gitignore
+└─ README.md
+
 ```
 
 ## Features
