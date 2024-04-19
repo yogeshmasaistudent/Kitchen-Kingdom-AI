@@ -86,13 +86,6 @@ npm run start
 ```
 
 
-## Usage
-
-```bash
-
-```
-
-
 ## API Endpoints
 
 - POST / - Create a recipe
