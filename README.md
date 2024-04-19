@@ -23,53 +23,52 @@ Kitchen-Kingdom-AI/
 │ ├─ index.js
 │ ├─ package.json
 │ └─ packagelock.json
-└─ Frontend/
-├─ dist/
-├─ node_modules/
-├─ public/
-├─ src/
-│ ├─ components/
-│ │ ├─ navbar.jsx
-│ │ ├─ privateroute.jsx
-│ │ ├─ recipedetailsmodal.jsx
-│ │ ├─ recipeeditmodal.jsx
-│ │ ├─ recipesearch.jsx
-│ │ ├─ spinner.jsx
-│ │ └─ uploadwidget.jsx
-│ ├─ pages/
-│ │ ├─ auth/
+└ Frontend/
+| ├─ dist/
+| ├─ node_modules/
+| ├─ public/
+| ├─ src/
+│ | ├─ components/
+│ │ | ├─ navbar.jsx
+│ │ | ├─ privateroute.jsx
+│ │ | ├─ recipedetailsmodal.jsx
+│ │ | ├─ recipeeditmodal.jsx
+│ │ | ├─ recipesearch.jsx
+│ │ | ├─ spinner.jsx
+│ │ | └─ uploadwidget.jsx
+│ | ├─ pages/
+│ │ | ├─ auth/
 │ │ │ ├─ forms/
-│ │ │ │ └─ authlayout.jsx
-│ │ └─ user/
-│ │ └─ userslice.js
-│ ├─ redux/
-│ │ └─ store.js
-│ ├─ styles/
-│ │ ├─ auth/
-│ │ │ └─ authlayout.css
-│ │ ├─ create-recipe.css
-│ │ ├─ home.css
-│ │ ├─ navbar.css
-│ │ └─ register.css
+| | | | |-loginFrom.jsx
+| | | | └─ registerform.jsx
+│ │ │ └─ authlayout.jsx
+│ │ | └─ createrecipe.jsx
+│ │ | └─ myrecipe.jsx
+| | | └─ savedrecipes.jsx
+│ | ├─ redux/
+| | | ├─ user
+│ │ | └─ store.js
+│ | ├─ styles/
+│ │ | ├─ authlayout.css
+│ │ | ├─ create-recipe.css
+│ │ | ├─ home.css
+│ │ | ├─ navbar.css
+│ │ | └─ register.css
+| | ├─ App.css
+| | ├─ App.jsx
+| | ├─ constant.js
+| | ├─ index.css
+| | └─ main.js
 │ ├─ .eslintrc.cjs
 │ ├─ .gitignore
 │ ├─ index.html
 │ ├─ package.json
 │ ├─ packagelock.json
-│ ├─ README.md
 │ └─ vite.config.js
 └─ .gitignore
+└─ redme.md
 ```
 
-
-## Video Walkthrough of the project
-Attach a very short video walkthrough of all of the features [ 1 - 3 minutes ]
-
-## Video Walkthrough of the codebase
-Attach a very short video walkthrough of the codebase [ 1 - 5 minutes ]
-
-## Features
-Features
 ## Features
 - **Recipe Generation:** Users can request recipes for various dishes by providing the dish name, and the application will generate detailed recipes, including ingredients, instructions, and additional add-ons.
 - **Save Recipe:** Users can save recipes to the database and view them later on the recipe page.
@@ -109,7 +108,5 @@ npm run start
 - **React:** JavaScript library for building user interfaces.
 
 
-
-## Upcoming Features 
 
 
