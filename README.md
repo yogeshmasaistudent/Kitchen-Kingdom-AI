@@ -84,6 +84,11 @@ cd Backend
 npm install 
 npm run start
 ```
+```bash
+cd FrontEnd
+npm install
+npm run dev
+```
 
 
 ## API Endpoints
