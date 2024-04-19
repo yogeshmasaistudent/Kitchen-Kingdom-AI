@@ -1,7 +1,5 @@
 # Kitchen-Kingdom-AI
 
-### Home Page
-![Home page image](placeholder)
 
 ## Introduction
 
@@ -11,7 +9,7 @@ Kitchen-Kingdom-AI is an innovative application that leverages artificial intell
 Fullstack
 
 ## Deployed App
-- Frontend: http://localhost:5173/
+- Frontend: http:https://kitchen-kingdom-ai.vercel.app/
 - Backend: https://kitchen-kingdom-ai-q6fy.onrender.com
 
 ## Directory Structure
