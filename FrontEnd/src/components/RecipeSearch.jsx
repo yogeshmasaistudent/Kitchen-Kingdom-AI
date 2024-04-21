@@ -14,7 +14,7 @@ function RecipeSearch() {
   const handleSearch = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/", {
+      const response = await fetch("https://kitchen-kingdom-ai.onrender.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +24,7 @@ function RecipeSearch() {
       const data = await response.json();
       const dishName = data.data["Dish Name"];
   
-      const response1 = await fetch("http://localhost:3000/dish", { // Changed endpoint to /dish
+      const response1 = await fetch("https://kitchen-kingdom-ai.onrender.com/dish", { // Changed endpoint to /dish
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function RecipeSearch() {
             style={styles.input}
           />
           <button onClick={handleSearch} style={styles.button}>
-            Search
+          Generate Recipe
           </button>
         </div>
         {loading ? (
@@ -154,6 +154,7 @@ const styles = {
     marginBottom: "10px",
     margin: "0 auto",
     padding: "0px",
+    paddingBottom:"10px",
     borderRadius: "10px",
     background: "#FFFFFF",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
